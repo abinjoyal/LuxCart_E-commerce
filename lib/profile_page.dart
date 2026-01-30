@@ -10,7 +10,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Profile",
+          "Profile ",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
