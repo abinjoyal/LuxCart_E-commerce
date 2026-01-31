@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/favorite_data.dart';
-import 'package:flutter_application_2/favorites_page.dart';
-import 'package:flutter_application_2/notification_page.dart';
-import 'package:flutter_application_2/product_detail_screen.dart';
+import 'favorite_data.dart';
+import 'favorites_page.dart';
+import 'notification_page.dart';
+import 'product_detail_screen.dart';
 
 class MyWidget extends StatefulWidget {
   const MyWidget({super.key});
@@ -841,17 +841,20 @@ class _CategoryChip extends StatelessWidget {
     );
   }
 }
-
 class FavoriteItem {
   final String image;
   final String price;
   final String name;
 
-  FavoriteItem({required this.image, required this.price, required this.name});
+  FavoriteItem({
+    required this.image,
+    required this.price,
+    required this.name,
+  });
 }
 
 class FavoriteData {
-  static List<FavoriteItem> favorites = [];
+  static final List<FavoriteItem> favorites = [];
 
   static bool isFavorite(String image) {
     return favorites.any((item) => item.image == image);
@@ -865,5 +868,9 @@ class FavoriteData {
     }
   }
 
-  static void removeAt(int index) {}
+  static void removeAt(int index) {
+    favorites.removeAt(index);
+  }
 }
+
+

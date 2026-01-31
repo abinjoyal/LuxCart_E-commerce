@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -37,14 +38,14 @@ class ProfilePage extends StatelessWidget {
                   const CircleAvatar(
                     radius: 32,
                     backgroundColor: Color(0xFFEFF1F4),
-                    child: Icon(Icons.person, size: 32, color: Colors.black),
+                    backgroundImage: AssetImage('assets/icon.png'),
                   ),
                   const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        "         ",
+                        "Abin",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -52,7 +53,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        "         ",
+                        "Welcome to Abin",
                         style: TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                     ],
@@ -76,7 +77,12 @@ class ProfilePage extends StatelessWidget {
             _profileItem(
               icon: Icons.notifications_outlined,
               title: "Notifications",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationPage()),
+                );
+              },
             ),
             _profileItem(
               icon: Icons.settings_outlined,

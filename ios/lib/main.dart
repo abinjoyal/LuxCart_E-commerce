@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/abi_1.dart';
-import 'package:flutter_application_2/dashboard.dart';
+import 'abi_1.dart';
+import 'dashboard.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/abi_1.dart';
-import 'package:flutter_application_2/product_detail_screen.dart';
+import 'abi_1.dart';
+import 'product_detail_screen.dart';
 import 'favorite_data.dart';
 
 class CartPage extends StatefulWidget {

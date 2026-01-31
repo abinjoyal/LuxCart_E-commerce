@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/add_cart_page.dart';
-import 'package:flutter_application_2/buynow_page.dart';
-import 'package:flutter_application_2/cart_page.dart';
-import 'package:flutter_application_2/dashboard.dart';
+import 'abi_1.dart';
+import 'add_cart_page.dart';
+import 'buynow_page.dart';
+import 'cart_page.dart';
+import 'dashboard.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final String mainImage;
@@ -114,12 +115,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           radius: 20,
                           backgroundColor: Colors.white,
                           child: IconButton(
-                            icon: const Icon(
-                              Icons.favorite_border,
+                            icon: Icon(
+                              FavoriteData.isFavorite(widget.mainImage)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: FavoriteData.isFavorite(widget.mainImage)
+                                  ? Colors.red
+                                  : Colors.black,
                               size: 18,
-                              color: Colors.black,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                FavoriteData.toggleFavorite(
+                                  FavoriteItem(
+                                    image: widget.mainImage,
+                                    name: widget.productName,
+                                    price: widget.productprice,
+                                  ),
+                                );
+                              });
+                            },
                           ),
                         ),
                       ),
@@ -479,6 +494,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         context: context,
                         barrierDismissible: false,
                         builder: (context) {
+                          // ⏱ Auto close after 1 second
+                          Future.delayed(const Duration(seconds: 1), () {
+                            if (Navigator.canPop(context)) {
+                              Navigator.pop(context);
+
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      const Dashboard(currentindex: 1),
+                                ),
+                                (route) => false,
+                              );
+                            }
+                          });
+
                           return AlertDialog(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
@@ -502,47 +533,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-
-                                const SizedBox(height: 20),
-
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) =>
-                                              const Dashboard(currentindex: 1),
-                                        ),
-                                        (route) => false,
-                                      );
-                                    },
-                                    child: const Text("View Cart"),
-                                  ),
-                                ),
                               ],
                             ),
                           );
                         },
                       );
 
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (_) => AddCartPage(
-                          mainImage: widget.mainImage,
-                          productName: size[selectedSizeIndex],
-                          productitemname: widget.productName,
-                          pricevalue: widget.productprice,
-                          productbackground: widget.backgroundColor,
-                          productprice: widget.productprice,
-                          issize: widget.issize,
-                        ),
-                      );
+                      // showModalBottomSheet(
+                      //   context: context,
+                      //   isScrollControlled: true,
+                      //   backgroundColor: Colors.transparent,
+                      //   builder: (_) => AddCartPage(
+                      //     mainImage: widget.mainImage,
+                      //     productName: size[selectedSizeIndex],
+                      //     productitemname: widget.productName,
+                      //     pricevalue: widget.productprice,
+                      //     productbackground: widget.backgroundColor,
+                      //     productprice: widget.productprice,
+                      //     issize: widget.issize,
+                      //   ),
+                      // );
                     },
 
                     child: Container(

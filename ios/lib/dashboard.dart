@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/abi_1.dart';
-import 'package:flutter_application_2/cart_page.dart';
-import 'package:flutter_application_2/favorite_data.dart';
-import 'package:flutter_application_2/profile_page.dart';
+import 'abi_1.dart';
+import 'cart_page.dart';
+import 'favorite_data.dart';
+import 'profile_page.dart';
 
 class Dashboard extends StatefulWidget {
   final int currentindex;
